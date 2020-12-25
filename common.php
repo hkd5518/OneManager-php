@@ -1925,9 +1925,8 @@ function EnvOpt($needUpdate = 0)
         background-color: #1748ce;
     }
 
-    .block__list td {
-        cursor: pointer;
-
+    #sortdisks td {
+        cursor: move;
     }
 </style>
 <table border=1>
@@ -1950,7 +1949,7 @@ function EnvOpt($needUpdate = 0)
 <script>
     var disks=' . json_encode(explode("|", $disktags)) . ';
     function change(arr, oldindex, newindex) {
-        console.log(oldindex + "," + newindex);
+        //console.log(oldindex + "," + newindex);
         tmp=arr.splice(oldindex-1, 1);
         if (oldindex > newindex) {
             tmp1=JSON.parse(JSON.stringify(arr));
@@ -1964,12 +1963,12 @@ function EnvOpt($needUpdate = 0)
             tmp2.splice(0, newindex-1);
         }
         arr=tmp1.concat(tmp, tmp2);
-        console.log(arr);
+        //console.log(arr);
         return arr;
     }
     function dragsort(t) {
         if (t.disktag_sort.value==\'\') {
-            alert(\''.getconstStr('DragSort').'\');
+            alert(\'' . getconstStr('DragSort') . '\');
             return false;
         }
         envs = [' . $envs . '];
@@ -1990,8 +1989,7 @@ function EnvOpt($needUpdate = 0)
             }
         }
     });
-</script>
-<br>';
+</script><br>';
     }
     foreach (explode("|", $disktags) as $disktag) {
         if ($disktag!='') {
